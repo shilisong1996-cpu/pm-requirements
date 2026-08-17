@@ -20,7 +20,7 @@
 
 - 只要头脑风暴、问答、流程图、出图提示词、UI 方案、前端代码、接口实现、测试用例或测试报告。
 - 明确只要 Markdown、Word 或 PDF，且不需要同步生成 HTML PRD。
-- 需求仍有会影响目标、范围、交付物、优先级、约束或验收的关键不确定项；此时先使用 `requirements-stabilizer`。
+- 需求仍有会影响目标、范围、交付物、优先级、约束或验收的关键不确定项；先在本 Skill 内一次确认影响最大的一项，再生成文档。
 
 ## 行业模板匹配
 
@@ -37,11 +37,11 @@ Skill 会根据需求本身适配模板，而不是要求用户先选样式：
 
 ## 安装
 
-将整个仓库目录作为一个 Skill 安装到 Codex 的个人 Skills 目录，并重命名为 `pm-requirements-doc`：
+将整个仓库目录作为一个 Skill 安装到 Codex 的个人 Skills 目录，并命名为 `pm-requirements`：
 
 ```bash
 git clone https://github.com/shilisong1996-cpu/pm-requirements.git
-mv pm-requirements ~/.codex/skills/pm-requirements-doc
+mv pm-requirements ~/.codex/skills/pm-requirements
 ```
 
 不要只复制 `SKILL.md`；`assets/` 中的四套 HTML 模板是 Skill 的必要组成部分。
@@ -49,7 +49,7 @@ mv pm-requirements ~/.codex/skills/pm-requirements-doc
 ## 仓库结构
 
 ```text
-pm-requirements-doc/
+pm-requirements/
 ├── SKILL.md
 ├── agents/openai.yaml
 ├── assets/

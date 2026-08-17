@@ -1,13 +1,13 @@
 ---
-name: pm-requirements-doc
-description: "Create or update a standalone Chinese interactive HTML PRD from a product idea, feature request, business requirement, screenshot, process note, module list, or confirmed flow. Use when the expected deliverable is a complete PRD: first map and confirm the user flow, then match the requirement to a bundled industry template or fall back to the generic template, and include original prototype images when supplied, per-page frontend interaction, backend data, interface definitions, exception logic, and acceptance criteria. Do not use for brainstorming, Q&A, a flowchart only, UI/design prompts, code implementation, test cases only, or a Markdown/Word/PDF document; if key requirement uncertainty remains, use requirements-stabilizer first."
+name: pm-requirements
+description: "Create or update a standalone Chinese interactive HTML PRD from a product idea, feature request, business requirement, screenshot, process note, module list, or confirmed flow. Use when the expected deliverable is a complete PRD: first map and confirm the user flow, then match the requirement to a bundled industry template or fall back to the generic template, and include original prototype images when supplied, per-page frontend interaction, backend data, interface definitions, exception logic, and acceptance criteria. Do not use for brainstorming, Q&A, a flowchart only, UI/design prompts, code implementation, test cases only, or a Markdown/Word/PDF document. If a key uncertainty would change the final document, identify and resolve it before drafting the PRD."
 ---
 
 # 产品需求文档（HTML）
 
 把已经稳定的需求转换为研发、设计和测试都能直接使用的 HTML PRD。这个 Skill 有严格的两阶段门槛：**先确认流程，再写文档**。
 
-若需求仍存在会改变目标、范围、交付物、优先级、约束或验收结果的关键不确定项，先使用 `requirements-stabilizer`；不要拿 PRD 编写替代需求澄清。
+若需求仍存在会改变目标、范围、交付物、优先级、约束或验收结果的关键不确定项，先在本 Skill 内一次确认影响最大的一项；不要拿 PRD 编写替代需求澄清。
 
 ## 调用边界
 
@@ -24,7 +24,7 @@ description: "Create or update a standalone Chinese interactive HTML PRD from a 
 - 只要一张流程图、页面原型/出图提示词、UI 视觉方案、前端页面代码、接口实现、测试用例或测试报告。
 - 用户明确要 Markdown、Word、PDF 等非 HTML 文档，且不要求同步产出 HTML PRD。
 - 只评审、校对或总结已有文档，但不需要改写成交付型 HTML PRD。
-- 需求仍有会影响目标、范围、交付物、优先级、约束或验收的关键不确定项；此时先调用 `requirements-stabilizer`，完成澄清后再进入本 Skill。
+- 需求仍有会影响目标、范围、交付物、优先级、约束或验收的关键不确定项；此时先在本 Skill 内一次确认影响最大的一项，完整重判后再进入文档生成。
 
 ## 阶段一：流程图确认
 
