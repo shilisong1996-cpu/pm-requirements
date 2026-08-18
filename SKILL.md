@@ -40,6 +40,8 @@ description: "Create or update a standalone Chinese interactive HTML PRD from a 
 
 ## 阶段一：流程图确认
 
+收到 `requirements_snapshot/v1` 时，先核对 `status`、`basis_revision`、六类事实、`material_gaps` 和产物引用。只有 `ready` 快照可作为流程图与 PRD 的当前依据；保留 `snapshot_id`、revision 和引用到最终 HTML 的文档元信息或需求背景中。`safe_default` 必须显式标为默认项；`unknown` 或 material gap 仍按本 Skill 的一次一问规则处理。该输入可来自任意工具，不要求安装其他 Skill。
+
 1. 阅读用户描述、截图、已有原型、项目规则和相关资料，识别目标用户、业务目标、角色、入口、页面、动作、状态、数据读写和出口。
 2. 仅输出一张 Mermaid 流程图，覆盖用户正常路径、关键分支和必要异常分支；不要输出 PRD、需求明细或 HTML 文档。
 3. 用一句话请用户确认流程。例如：`请确认以上流程和分支是否正确；确认后我将按该流程生成 HTML PRD。`
@@ -57,7 +59,7 @@ description: "Create or update a standalone Chinese interactive HTML PRD from a 
 
 - `assets/` 下的全部 HTML 模板都是本 Skill 的必要组成部分，复制、安装、导出或发布本 Skill 时必须随 Skill 一起保留，不得只分发 `SKILL.md`。
 - 每次生成 HTML PRD 都必须从选定模板复制后填充，不得脱离模板另起一个空白 HTML，也不得删除模板中的悬浮目录、页面卡片、折叠逻辑模块、接口定义表和验收标准结构。
-- 每套模板内的 `template#page-card-complete-example` 是完整填写粒度的基准：复制其页面卡片结构后替换为本次真实内容，并在最终交付 HTML 中删除该隐藏示范容器；不得只保留占位符骨架。
+- 每套模板内的 `template#page-card-complete-example` 是通用填写骨架；选择消费、医疗健康或金融/公共服务模板时，必须优先参考同文件的 `template#industry-page-card-complete-example`，继承该行业的真实角色、风险、数据边界、接口和异常处理粒度，再替换为本次真实内容。最终交付 HTML 中删除全部隐藏示范容器；不得只保留占位符骨架。
 - 最终 PRD 与模板不是同一个文件：将填充后的副本输出到交付目录；如有原型图，同时在该 HTML 同级创建 `assets/` 并以相对路径引用。模板原件仅作为可复用基线，不用业务内容覆盖。
 
 ### 行业模板选择
@@ -75,6 +77,7 @@ description: "Create or update a standalone Chinese interactive HTML PRD from a 
 4. 用户明确要求指定或避开某个模板时，将其作为本次文档的展示约束优先执行。
 5. 在文档封面的 `meta` 中写明“文档样式：[模板名称]”，便于评审人员识别；不得因为换模板改变已确认流程、固定章节或业务内容。
 6. 所有模板必须保留相同的业务字段、折叠模块、接口定义表、验收标准和右上角悬浮目录；行业模板仅改变视觉层级与阅读版式，不能删减交付信息。
+7. 行业示范用于约束信息粒度，不是可复制的业务事实：消费服务重点写权益/库存/预约等用户交易状态；医疗健康重点写授权、最小展示和号源/服务限制；金融/公共服务重点写身份、额度、材料、告知版本、幂等和审计。实际需求没有这些规则时，写“无新增”或 `[待对接]`，不要照抄示范造规则。
 
 ### 文档固定结构
 
