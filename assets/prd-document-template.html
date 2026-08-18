@@ -131,6 +131,10 @@
         </table>
       </section>
     </main>
+    <!-- 填充粒度示范：复制此卡片结构后改为真实内容；最终交付前删除整个 template。 -->
+    <template id="page-card-complete-example">
+      <article class="page-card" data-example="replace-before-delivery"><h3>示范｜01 确认提交页</h3><div class="page-meta"><span>模块：服务申请</span><span>入口：申请单详情底部主按钮</span><span>角色：已登录用户</span><span>状态：待确认</span></div><div class="prototype"><h4>原型图</h4><p class="empty-note">示范引用：assets/confirm-submit.png；真实交付时替换为用户提供的原图，未提供则明确写“未提供原型图”。</p></div><div class="logic-stack"><details class="logic-block" open><summary>前端交互逻辑</summary><div class="logic-body"><ul><li>页面按“顶部返回、申请摘要、服务明细、联系人、提交说明、底部固定按钮”纵向排列；正文可滚动，按钮固定在安全区上方。</li><li>初始化加载申请摘要；联系人缺失时显示“去补充”链接。主按钮“确认提交”在必填项齐全时启用，点击后进入加载态并防重复提交；成功跳转提交结果页。</li><li>图标复用项目 SVG；主按钮高度 48px、通栏，加载时保留文案并显示进度图标。</li></ul></div></details><details class="logic-block" open><summary>后端数据逻辑</summary><div class="logic-body"><ul><li>读取申请单、服务明细和联系人；数据范围限定为当前登录用户可访问的申请单。</li><li>提交时写入提交时间和状态 `submitted`；若服务金额存在，展示金额 = 单价 × 数量，金额保留两位小数。</li></ul></div></details><details class="logic-block" open><summary>接口定义</summary><div class="logic-body"><table class="interface-table"><thead><tr><th>接口名称/用途</th><th>方法与路径</th><th>触发与鉴权</th><th>请求参数</th><th>返回字段/错误码</th><th>其他约定</th></tr></thead><tbody><tr><td>获取申请确认信息</td><td>GET /api/applications/{applicationId}/confirmation</td><td>进入页面；当前用户且具备申请单查看权限</td><td>applicationId:string:必填</td><td>application、items、contact；404 不存在，403 无权限</td><td>只读，不缓存敏感联系人</td></tr><tr><td>确认提交申请</td><td>POST /api/applications/{applicationId}/submit</td><td>点击确认提交；当前用户</td><td>applicationId:string:必填；idempotencyKey:string:必填</td><td>submissionId、status；409 已提交，422 必填信息缺失</td><td>幂等键 24 小时内复用</td></tr></tbody></table></div></details><details class="logic-block" open><summary>异常处理逻辑</summary><div class="logic-body"><ul><li>网络失败：保留已填写内容，提示“提交失败，请重试”；按钮恢复可点击。</li><li>403：提示无权限并返回申请列表；409：展示已提交结果，不重复创建记录；422：定位缺失字段并引导补充。</li></ul></div></details></div></article>
+    </template>
     <script>
       const toc = document.querySelector('#toc');
       const toggle = document.querySelector('#toc-toggle');

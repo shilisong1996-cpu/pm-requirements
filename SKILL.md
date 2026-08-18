@@ -9,6 +9,17 @@ description: "Create or update a standalone Chinese interactive HTML PRD from a 
 
 若需求仍存在会改变目标、范围、交付物、优先级、约束或验收结果的关键不确定项，先在本 Skill 内一次确认影响最大的一项；不要拿 PRD 编写替代需求澄清。
 
+## Router 交接（仅在任务已提供 Router task ID、桥接命令或 MCP 工具时）
+
+本 Skill 可独立生成 HTML PRD；Router 不是调用前置条件。接入 Router 时，使用其 [交接信封 v1](https://github.com/shilisong1996-cpu/product-workflow-router/blob/main/contracts/handoff-envelope.md)：
+
+1. 提问和写 PRD 前先读取当前任务。已有 `awaiting_clarification` 时，沿用该唯一问题，不再独立追问。
+2. 文档阶段发现会改变业务、页面结构、接口、异常或验收的缺失时，提交 `status=awaiting_clarification`，将 `target_phase` 指向最早受影响阶段；不要在 PRD 中用假设填空，也不要在文档阶段继续向下交付。
+3. 读取视觉交接中的 `figma_delivery.decision`：`required` 时引用已完成原型；`skipped` 时直接引用确认视觉稿和原始静态素材；不得因未做 Figma 而拒绝生成 PRD。
+4. 输出最终 HTML 后，提交 `phase=prd`、`status=ready`，附 HTML 和原始素材引用、空的 `material_gaps`。正式完成仍须由 Router 的 `complete` 凭证记录。
+
+不要上传完整聊天记录、敏感数据或臆造接口/素材引用。
+
 ## 调用边界
 
 ### 使用本 Skill
@@ -45,6 +56,7 @@ description: "Create or update a standalone Chinese interactive HTML PRD from a 
 
 - `assets/` 下的全部 HTML 模板都是本 Skill 的必要组成部分，复制、安装、导出或发布本 Skill 时必须随 Skill 一起保留，不得只分发 `SKILL.md`。
 - 每次生成 HTML PRD 都必须从选定模板复制后填充，不得脱离模板另起一个空白 HTML，也不得删除模板中的悬浮目录、页面卡片、折叠逻辑模块、接口定义表和验收标准结构。
+- 每套模板内的 `template#page-card-complete-example` 是完整填写粒度的基准：复制其页面卡片结构后替换为本次真实内容，并在最终交付 HTML 中删除该隐藏示范容器；不得只保留占位符骨架。
 - 最终 PRD 与模板不是同一个文件：将填充后的副本输出到交付目录；如有原型图，同时在该 HTML 同级创建 `assets/` 并以相对路径引用。模板原件仅作为可复用基线，不用业务内容覆盖。
 
 ### 行业模板选择
