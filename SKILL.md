@@ -15,8 +15,9 @@ description: "Create or update a standalone Chinese interactive HTML PRD from a 
 
 1. 提问和写 PRD 前先读取当前任务。已有 `awaiting_clarification` 时，沿用该唯一问题，不再独立追问。
 2. 文档阶段发现会改变业务、页面结构、接口、异常或验收的缺失时，提交 `status=awaiting_clarification`，将 `target_phase` 指向最早受影响阶段；不要在 PRD 中用假设填空，也不要在文档阶段继续向下交付。
-3. 读取视觉交接中的 `figma_delivery.decision`：`required` 时引用已完成原型；`skipped` 时直接引用确认视觉稿和原始静态素材；不得因未做 Figma 而拒绝生成 PRD。
-4. 输出最终 HTML 后，提交 `phase=prd`、`status=ready`，附 HTML 和原始素材引用、空的 `material_gaps`。正式完成仍须由 Router 的 `complete` 凭证记录。
+3. 未答问题不会被“需要 Figma”、新增图片或其他无关补充自动关闭；只有后续重大变更明确使它失效时，才可显式 `supersede_clarification` 并留下原因。
+4. 读取视觉交接中的 `figma_delivery.decision`：`required` 时引用已完成原型；`skipped` 时直接引用确认视觉稿和原始静态素材；不得因未做 Figma 而拒绝生成 PRD。
+5. 输出最终 HTML 后，提交 `phase=prd`、`status=ready`，附 HTML 和原始素材引用、空的 `material_gaps`。正式完成仍须由 Router 的 `complete` 凭证记录。
 
 不要上传完整聊天记录、敏感数据或臆造接口/素材引用。
 

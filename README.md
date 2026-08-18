@@ -38,7 +38,7 @@ Skill 会根据需求本身适配模板，而不是要求用户先选样式：
 
 ## 接入 Product Workflow Router 时
 
-Router 不是生成 HTML PRD 的前置条件。已有 Router task 时，按 [交接信封 v1](https://github.com/shilisong1996-cpu/product-workflow-router/blob/main/contracts/handoff-envelope.md) 继承需求、视觉和素材引用：若有未关闭澄清项，不重复提问；发现会改变业务、页面、接口或验收的缺口时回到最早受影响阶段。`figma_delivery=skipped` 时可直接引用确认视觉稿和用户原始静态素材，不要求补做 Figma。
+Router 不是生成 HTML PRD 的前置条件。已有 Router task 时，按 [交接信封 v1](https://github.com/shilisong1996-cpu/product-workflow-router/blob/main/contracts/handoff-envelope.md) 继承需求、视觉和素材引用：若有未关闭澄清项，不重复提问，也不因无关补充自动关闭；发现会改变业务、页面、接口或验收的缺口时回到最早受影响阶段。`figma_delivery=skipped` 时可直接引用确认视觉稿和用户原始静态素材，不要求补做 Figma。
 
 ## 安装
 
